@@ -5,11 +5,14 @@ import styles from "./progress.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import {UPDATE_PROGRESS_MUTATION} from '../GraphQL/Mutations';
+import axios from "axios";
 
 
 function Progress() {
   const { data } = useQuery(GET_PROGRESS);
   const [steps, setSteps] = useState([]);
+  const [isProgressCompleted, setProgressCompleted] = useState(false);
+  const [randomText, setRandomText] = useState('');
   const [updateProgress] = useMutation(UPDATE_PROGRESS_MUTATION, {
     refetchQueries: [{query: GET_PROGRESS}],
     awaitRefetchQueries: true,
@@ -32,11 +35,24 @@ function Progress() {
     }).catch((err) => console.log(err));
   }
 
-  useEffect(() => {
+  useEffect(async () => {
     if (data) {
       setSteps(data.getProgress);
+      const progressCompleted = data.getProgress.every((val) => val.isCompleted === true);
+        setProgressCompleted(progressCompleted);
+        if(progressCompleted) {
+          const result = await axios(
+              'https://uselessfacts.jsph.pl/random.json',
+          );
+          setRandomText(result.data.text)
+        }
     }
   }, [data]);
+
+  if (isProgressCompleted) {
+    // When all phases are completed, display a random fact from 'https://uselessfacts.jsph.pl/random.json'
+    return <article><h1> Congratulation! </h1><br/><p>{randomText}</p></article>
+  }
 
   return (
     <main>

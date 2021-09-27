@@ -1,6 +1,12 @@
 @import "../variables";
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
 
+article {
+  width: 250px;
+  margin: 0 auto;
+  border: 25px solid #f2f2f2;
+  padding: 10px;
+}
 main {
   display: flex;
   height: auto;
