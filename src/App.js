@@ -1,8 +1,5 @@
-import logo from "./logo.svg";
-import "./App.css";
 import {
   ApolloClient,
-  ApolloCache,
   ApolloProvider,
   HttpLink,
   from,
@@ -13,9 +10,12 @@ import Progress from "./components/progress";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
-    graphqlErrors.map(({ message, location, path }) => {
+    graphqlErrors.map(({ message}) => {
       alert(`GraphQL error: ${message}`);
     });
+  }
+  if(networkError) {
+    alert(`Network error: ${networkError}`);
   }
 });
 

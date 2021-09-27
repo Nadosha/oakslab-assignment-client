@@ -1,0 +1,70 @@
+@import "../variables";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+
+main {
+  display: flex;
+  height: auto;
+  padding: 0;
+  margin: 10px;
+  align-items: center;
+  justify-content: center;
+
+  form {
+    min-width: 250px;
+    width: auto;
+    padding: 10px 15px 10px 15px;
+    border: 25px solid #f2f2f2;
+
+    .title {
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+    .inlineBlock * {
+      display: inline-block;
+    }
+    label {
+      height: 30px;
+      & > * {
+        display: inline;
+      }
+      input[type=checkbox] {
+        width: 20px;
+        height: 20px;
+        margin: .5em 1em 0 0;
+      }
+    }
+    .number {
+      background: #282c34;
+      border-radius: 100%;
+      height: 2em;
+      width: 2em;
+      text-align: center;
+      margin: 5px 15px 0 0;
+
+      p {
+        margin-top: 0.2em;
+        font-size: 1.2em;
+        font-family: sans-serif;
+        color: white;
+      }
+    }
+    fieldset {
+      border: none;
+      margin: 10px;
+
+      label {
+        display: block;
+      }
+    }
+    .completedIcon {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      float: right !important;
+      &:after {
+        content: "";
+        clear: both;
+      }
+    }
+
+  }
+}
